@@ -25,5 +25,29 @@
                       data-locale="auto"></script>
             <% end %>
         </header>
+        <h3>Write a new Post!</h3>
+        <h6>You must be <%= link_to "signed in", new_user_session_path %></h6>
+        <p><%= link_to "New Post", new_post_path, class: "btn btn-success btn-large" %>
+          <br>
+          <br>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.each do |x| %>
+                <tr>
+                  <td>
+                    <p><%= link_to x.content, post_path(x.id) %></p>
+                    <% if user_signed_in? && current_user.id == x.user_id %>
+                      <%= link_to "Delete", post_path(x.id), method: :delete, data: {confirm: "Are you sure?"} %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tody>
+          </table>
+          
     </div>
 </body>

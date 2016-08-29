@@ -1,0 +1,5 @@
+<h2><%= @post.content %></h2>
+<% unless @post.user == nil %>
+	<h2>Posted by: <%= @post.user.email %></h2>
+<% end %>
+<h2><%= @post.created_at.to_formatted_s(:long)  %></h2>
